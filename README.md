@@ -17,3 +17,6 @@ UPDATE:
 
 most logic is done. everything has gone as plan exept for the level class. The game has working collision detection and graphics. There is also an enemy class added which follows the charecter. When the space bar is hit the character attacks and if the enemy is in range it disapears. The level will now be an integer. let me explain. When the charecter gos off the screen, level increases by one and the charecter moves to the other side. With this integer i can controll where the walls and enemies go when the level either increases of decreases. This will give the illution of traveling beetween rooms.
 
+FINAL UPDATE:
+  Game done and ready for final submission. There is a funtional map and everything runs smooth. enemies attack, there is game over, and there is a win screen. The goal is to kill all five enemies and then go to the room with the "hole" to win.
+
