@@ -15,16 +15,27 @@ pygame.display.set_caption('game')
 x = 225
 y = 225
 ex = -200
-ey = 250
+ey = -200
 hx = 500
 hy = 500
-vel = 25
+vel = 0
 evel = 0
+startScreen = True
 go21 = True
+killed21 = False
+
 go22 = True
+killed22 = False
+
 go32 = True
+killed32 = False
+
 go20 = True
+killed20 = False
+
 go30 = True
+killed30 = False
+
 gameOver = False
 gameEnd = False
 width = 50
@@ -87,6 +98,7 @@ image = pygame.image
 background = pygame.image.load(r'bricks.jpg')
 gameover = pygame.image.load(r'game_over.jpg')
 gameend = pygame.image.load(r'winscreen.jpg')
+start = pygame.image.load(r'start_screen.jpg')
 hole = pygame.image.load(r'hole.png')
 sysfont = pygame.font.get_default_font()
 font = pygame.font.SysFont(None, 48)
@@ -156,11 +168,80 @@ while run:
             ex = -100
             ey = -100
             kills = kills + 1
+            if levelx == 2 and levely == 1:
+              killed21 = True
+            if levelx == 2 and levely == 2:
+              killed22 = True
+            if levelx == 3 and levely == 2:
+              killed32 = True
+            if levelx == 2 and levely == 0:
+              killed20 = True
+            if levelx == 3 and levely == 0:
+              killed30 = True
         vel = 0
+        startScreen = False
         if right:
             image = pygame.image.load(r'attack.png')
         if left:
             image = pygame.image.load(r'attackInverse.png')
+        if gameOver:
+          x = 225
+          y = 225
+          ex = -200
+          ey = -200
+          hx = 500
+          hy = 500
+          vel = 25
+          evel = 0
+          go21 = True
+          killed21 = False
+
+          go22 = True
+          killed22 = False
+
+          go32 = True
+          killed32 = False
+
+          go20 = True
+          killed20 = False
+          go30 = True
+          killed30 = False
+          width = 50
+          height = 50
+          kills = 0
+          levelx = 1
+          levely = 1 
+          gameOver = False
+          gameEnd = False   
+        if gameEnd:
+          x = 225
+          y = 225
+          ex = -200
+          ey = -200
+          hx = 500
+          hy = 500
+          vel = 25
+          evel = 0
+          go21 = True
+          killed21 = False
+          go22 = True
+          killed22 = False
+          go32 = True
+          killed32 = False
+          go20 = True
+          killed20 = False
+          go30 = True
+          killed30 = False
+          width = 50
+          height = 50
+          kills = 0
+          levelx = 1
+          levely = 1 
+          gameOver = False
+          gameEnd = False 
+          killed32 = False
+          go32 = True
+
     else:
         dude.attack = False
         vel = 25
@@ -172,6 +253,15 @@ while run:
     walls = [wall1, wall2, wall3, wall4, wall5, wall6, wall7, wall8]
 
     if levelx == 1 and levely == 1:
+        go21 = True
+        go22 = True
+        go20 = True
+        go30 = True
+        go32 = True
+
+        ex = -200
+        ey = -200
+        evel = 0
         wall1.w = 250
         wall1.h = 50
         wall1.x = 0
@@ -213,10 +303,18 @@ while run:
         wall8.y = 450
 
     if levelx == 2 and levely == 1:
+        go22 = True
+        go32 = True
+        go20 = True
+        go30 = True
         if go21 == True:
             ex = 250
             ey = 250
             evel = 1
+        if killed21 == True and levelx == 2 and levely == 1:
+          ex = -200
+          ey = -200
+          evel = 0
         go21 = False
         wall1.x = 0
         wall1.y = 0
@@ -259,8 +357,16 @@ while run:
         wall8.h = 50
 
     if levelx == 3 and levely == 1:
+        go21 = True
+        go22 = True
+        go20 = True
+        go30 = True
+        go32 = True
         if kills == 5 and x <= 350:
             gameEnd = True
+        ex = -200
+        ey = -200
+        evel = 0
         wall1.x = 0
         wall1.y = 0
         wall1.w = 250
@@ -302,10 +408,18 @@ while run:
         wall8.h = 50
 
     if levelx == 2 and levely == 0:
+        go21 = True
+        go22 = True
+        go32 = True
+        go30 = True
         if go20 == True:
-            ex = 250
-            ey = 250
-            evel = 1
+          ex = 250
+          ey = 250
+          evel = 1
+        if killed20 == True and levelx == 2 and levely == 0:
+          ex = -200
+          ey = -200
+          evel = 0
         go20 = False
         wall1.x = 0
         wall1.y = 0
@@ -348,10 +462,18 @@ while run:
         wall8.h = 50
 
     if levelx == 3 and levely == 0:
+        go21 = True
+        go22 = True
+        go32 = True
+        go20 = True
         if go30 == True:
-            ex = 250
-            ey = 250
-            evel = 1
+          ex = 250
+          ey = 250
+          evel = 1
+        if killed30 == True and levelx == 3 and levely == 0:
+          ex = -200
+          ey = -200
+          evel = 0
         go30 = False
         wall1.x = 0
         wall1.y = 0
@@ -394,10 +516,19 @@ while run:
         wall8.h = 50
 
     if levelx == 2 and levely == 2:
+        go21 = True
+        go20 = True
+        go30 = True
+        go32 = True
+        g032 = True
         if go22 == True:
             ex = 250
             ey = 250
             evel = 1
+        if killed22 == True and levelx == 2 and levely == 2:
+          ex = -200
+          ey = -200
+          evel = 0
         go22 = False
         wall1.w = 250
         wall1.h = 50
@@ -440,7 +571,20 @@ while run:
         wall8.y = 450
 
     if levelx == 3 and levely == 2:
+        go21 = True
+        go30 = True
+        go22 = True
+        go20 = True
         if go32 == True:
+         ex = 250
+         ey = 250
+         evel = 1
+        if killed32 == True and levelx == 3 and levely == 2:
+          ex = -200
+          ey = -200
+          evel = 0
+        else:
+          if go32 == True:
             ex = 250
             ey = 250
             evel = 1
@@ -484,6 +628,7 @@ while run:
         wall8.y = 450
         wall8.w = 250
         wall8.h = 50
+        
     win.blit(hole, (hx, hy))
 
     for Wall in walls:
@@ -539,13 +684,20 @@ while run:
 
         if enemy.dbottom:
             ey = ey - evel
-        if ex <= x + 3 and ey <= y + 3 and ex >= x - 3 and ey >= y - 3:
+        if ex <= x + 10 and ey <= y + 10 and ex >= x - 10 and ey >= y - 10:
             gameOver = True
 
     if gameOver:
         vel = 0
         evel = 0
         win.blit(gameover, (0, 0))
+
+    if startScreen:
+      win.blit(start, (0, 0))
+      vel = 0
+    else:
+      win.blit(start, (600, 600))
+      vel = 25
 
     if gameEnd:
         win.blit(gameend, (0, 0))
